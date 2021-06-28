@@ -2,3 +2,5 @@ Django>=3.0,<4.0
 djangorestframework>=3.0,<4.0
 psycopg2-binary>=2.8
 django-versatileimagefield>=2.1
+drf-flex-fields>=0.2.1
+django-filter>=2.4.0
