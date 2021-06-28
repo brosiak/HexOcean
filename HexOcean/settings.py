@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'backend',
+    'versatileimagefield'
 ]
 
 MIDDLEWARE = [
@@ -103,6 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'backend.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
