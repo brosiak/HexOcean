@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.db.models import base
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from backend.views import ImageViewSet, UserViewSet
+from backend.views import ImageViewSet, ThumbnailViewSet, UserViewSet, TierViewSet
 from django.conf.urls import url, include
 from .settings import *
 from django.views.static import serve
@@ -25,6 +25,8 @@ from django.views.static import serve
 router = DefaultRouter()
 router.register(r"image", ImageViewSet, basename="Image")
 router.register(r"user", UserViewSet, basename="User")
+router.register(r"thumbnail", ThumbnailViewSet, basename="Thumbnail")
+router.register(r"tier", TierViewSet, basename="Tier")
 
 urlpatterns = [
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
