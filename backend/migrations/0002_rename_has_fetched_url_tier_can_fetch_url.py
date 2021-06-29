@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('backend', '0001_initial'),
+        ("backend", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='tier',
-            old_name='has_fetched_url',
-            new_name='can_fetch_url',
+            model_name="tier",
+            old_name="has_fetched_url",
+            new_name="can_fetch_url",
         ),
     ]

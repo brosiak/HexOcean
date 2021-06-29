@@ -33,6 +33,11 @@ urlpatterns = [
     path("backend/", include("backend.urls")),
     url(r"^admin/", admin.site.urls),
     url(r"^", include(router.urls)),
-    url(r'^media/(?P<path>.*)$', serve,
-        {'document_root': MEDIA_ROOT, })
+    url(
+        r"^media/(?P<path>.*)$",
+        serve,
+        {
+            "document_root": MEDIA_ROOT,
+        },
+    ),
 ]

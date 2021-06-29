@@ -19,16 +19,22 @@
 
 from rest_framework.decorators import action
 from rest_framework.viewsets import ReadOnlyModelViewSet
-from .serializers import ImageSerializer, ThumbnailSerializer, TierSerializer, UserSerializer
+from .serializers import (
+    ImageSerializer,
+    ThumbnailSerializer,
+    TierSerializer,
+    UserSerializer,
+)
 from .models import Image, User, Thumbnail, Tier
 from rest_flex_fields.views import FlexFieldsMixin, FlexFieldsModelViewSet
 from rest_flex_fields import is_expanded
 from django_filters import rest_framework as filters
 
+
 class ImageViewSet(FlexFieldsModelViewSet):
     serializer_class = ImageSerializer
     permit_list_expands = ["user", "image"]
-    filterset_fields = ("user", )
+    filterset_fields = ("user",)
 
     def get_queryset(self):
         queryset = Image.objects.all()
@@ -41,8 +47,6 @@ class ImageViewSet(FlexFieldsModelViewSet):
         return queryset
 
 
-
-
 class UserViewSet(ReadOnlyModelViewSet):
     serializer_class = UserSerializer
 
@@ -53,6 +57,7 @@ class TierViewSet(ReadOnlyModelViewSet):
     serializer_class = TierSerializer
 
     queryset = Tier.objects.all()
+
 
 class ThumbnailViewSet(ReadOnlyModelViewSet):
     serializer_class = ThumbnailSerializer

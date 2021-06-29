@@ -4,15 +4,17 @@ from .models import Image, Thumbnail, Tier, User
 from rest_flex_fields import FlexFieldsModelSerializer
 from versatileimagefield.serializers import build_versatileimagefield_url_set
 
+
 class ImageSerializer(FlexFieldsModelSerializer):
 
-    images = serializers.SerializerMethodField(method_name='get_image_sizes')
+    images = serializers.SerializerMethodField(method_name="get_image_sizes")
+
     class Meta:
         model = Image
         fields = ["pk", "name", "images", "image", "user", "expiration_time"]
         expandable_fields = {
             "image": ("backend.ImageSerializer"),
-            "user": ("backend.UserSerializer")
+            "user": ("backend.UserSerializer"),
         }
 
     def get_image_sizes(self, instance):
@@ -27,10 +29,13 @@ class ImageSerializer(FlexFieldsModelSerializer):
         thumbnails = Thumbnail.objects.filter(tiers=instance.user.tier.id)
         for thumbnail in thumbnails:
             sizes.append(
-                (f"thumbnail_{thumbnail.size}", f"thumbnail__{thumbnail.size}x{thumbnail.size}"))
+                (
+                    f"thumbnail_{thumbnail.size}",
+                    f"thumbnail__{thumbnail.size}x{thumbnail.size}",
+                )
+            )
 
         return build_versatileimagefield_url_set(instance.image, sizes, request=request)
-
 
 
 class ThumbnailSerializer(FlexFieldsModelSerializer):
@@ -44,8 +49,8 @@ class TierSerializer(FlexFieldsModelSerializer):
         model = Tier
         fields = ["pk", "name", "has_url", "can_fetch_url"]
         expandable_fields = {
-            "thumbnails": ("backend.ThumbnailSerializer", {'many': True}),
-            "users": ("backend.UserSerializer", {'many': True}),
+            "thumbnails": ("backend.ThumbnailSerializer", {"many": True}),
+            "users": ("backend.UserSerializer", {"many": True}),
         }
 
 
