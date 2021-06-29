@@ -22,7 +22,7 @@ class ImageSerializer(FlexFieldsModelSerializer):
         sizes = []
         if request.user.is_anonymous:
             raise serializers.ValidationError("Anonymous user rejected")
-        user = request.user
+        user = instance.user
         tier = user.tier
         if tier.has_url:
             sizes.append(("full_size", "url"))
