@@ -14,17 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.db.models import base
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from backend.views import ImageViewSet
+from backend.views import ImageViewSet, UserViewSet
 from django.conf.urls import url, include
+from .settings import *
+from django.views.static import serve
 
 router = DefaultRouter()
 router.register(r"image", ImageViewSet, basename="Image")
+router.register(r"user", UserViewSet, basename="User")
 
 urlpatterns = [
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("backend/", include("backend.urls")),
     url(r"^admin/", admin.site.urls),
     url(r"^", include(router.urls)),
+    url(r'^media/(?P<path>.*)$', serve,
+        {'document_root': MEDIA_ROOT, })
 ]
