@@ -29,6 +29,7 @@ from .models import Image, User, Thumbnail, Tier
 from rest_flex_fields.views import FlexFieldsMixin, FlexFieldsModelViewSet
 from rest_flex_fields import is_expanded
 from django_filters import rest_framework as filters
+from django.http import HttpResponse
 
 
 class ImageViewSet(FlexFieldsModelViewSet):
@@ -37,7 +38,13 @@ class ImageViewSet(FlexFieldsModelViewSet):
     filterset_fields = ("user",)
 
     def get_queryset(self):
-        queryset = Image.objects.all()
+        request = self.request
+        if request.user.is_anonymous:
+            return None
+        elif request.user.is_superuser:
+            queryset = Image.objects.all()
+        else:
+            queryset = Image.objects.images_for_user(request.user)
         if is_expanded(self.request, "user"):
             queryset = queryset.select_related("user")
 
