@@ -29,6 +29,7 @@ medium - with has_url checked\
 Go to Users -> Create two users\
 basic - with tier basic\
 medium - with tier medium\
+Go to user admin - select tier medium\
 Go to thumbnails -> Create two thumbnails\
 200 with size 200 and tiers - basic, medium selected\
 400 with size 400 and tiers - medium selected\
