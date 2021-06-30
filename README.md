@@ -47,6 +47,17 @@ send POST http://localhost:8000/image/ with body   \
  as admin\
  send GET http://localhost:8000/image/?user=user_id to filter images by user id\
 
+# Screenshots with examples
+Admin GET image\
+![Alt text](https://github.com/brosiak/HexOcean/blob/main/images_example/admin_get.png?raw=true "Admin get image")
+Admin GET with filter\
+![Alt text](https://github.com/brosiak/HexOcean/blob/main/images_example/admin_get_filter.png?raw=true "Admin get with filter")
+basic GET image\
+![Alt text](https://github.com/brosiak/HexOcean/blob/main/images_example/basic_get.png?raw=true "basic get image")
+medium GET image\
+![Alt text](https://github.com/brosiak/HexOcean/blob/main/images_example/medium_get.png?raw=true "medium get image")
+POST image example
+![Alt text](https://github.com/brosiak/HexOcean/blob/main/images_example/post_example.png?raw=true "Post image example")
 
 
 
