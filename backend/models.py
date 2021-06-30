@@ -7,6 +7,13 @@ from versatileimagefield.fields import VersatileImageField
 # Create your models here.
 
 
+class ImagesManager(models.Manager):
+    def images_for_user(self, user):
+        if user.is_anonymous:
+            return None
+        return super(ImagesManager, self).get_queryset().filter(user=user)
+
+
 class Image(models.Model):
     name = models.CharField(max_length=255)
     user = models.ForeignKey(
@@ -20,6 +27,8 @@ class Image(models.Model):
 
     def __str__(self):
         return self.name
+
+    objects = ImagesManager()
 
 
 class Tier(models.Model):

@@ -24,6 +24,8 @@ class ImageSerializer(FlexFieldsModelSerializer):
             raise serializers.ValidationError("Anonymous user rejected")
         user = instance.user
         tier = user.tier
+        if tier is None:
+            return
         if tier.has_url:
             sizes.append(("full_size", "url"))
         thumbnails = Thumbnail.objects.filter(tiers=instance.user.tier.id)
