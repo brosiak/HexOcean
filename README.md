@@ -9,7 +9,7 @@ Docker-compose\
 # HOW TO RUN
 After cloning repository, type following in source folder:
 ```
-$ run docker-compose up --build
+$ docker-compose up --build
 ```
 When containers are running, type:
 ```
