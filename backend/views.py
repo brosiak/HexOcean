@@ -1,23 +1,3 @@
-# from django.shortcuts import render
-# from django.http import JsonResponse
-
-# from rest_framework.decorators import api_view
-# from rest_framework.response import Response
-# from .serializers import ImageSerializer
-# from .models import *
-
-# @api_view(['GET'])
-# def api_overview(request):
-#     return JsonResponse("API BASE POINT", safe=False)
-
-# @api_view(['GET'])
-# def image_list(request):
-#     images = Image.objects.all()
-#     serializer = ImageSerializer(images, many=True)
-
-#     return Response(serializer.data)
-
-from rest_framework.decorators import action
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from .serializers import (
     ImageSerializer,
@@ -25,10 +5,14 @@ from .serializers import (
     TierSerializer,
     UserSerializer,
 )
-from .models import Image, User, Thumbnail, Tier
-from rest_flex_fields.views import FlexFieldsMixin, FlexFieldsModelViewSet
+from .models import (
+    Image,
+    User,
+    Thumbnail,
+    Tier
+)
+from rest_flex_fields.views import FlexFieldsModelViewSet
 from rest_flex_fields import is_expanded
-from django_filters import rest_framework as filters
 from django.http import HttpResponse
 
 

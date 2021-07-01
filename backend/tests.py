@@ -4,34 +4,24 @@ from .models import User, Image, Tier, Thumbnail
 from .views import ImageViewSet
 
 
-USER_NAMES = [
-    "basic",
-    "medium",
-    "pro",
-    "admin"
-]
+USER_NAMES = ["basic", "medium", "pro", "admin"]
 
 TIER_VARIABLES = {
     "basic": [False, False],
     "medium": [True, False],
     "pro": [True, True],
-    "admin": [True, False]
+    "admin": [True, False],
 }
 
-THUMBNAILS = {
-    "200": ["basic"],
-    "400": ["medium", "pro", "admin"]
-}
+THUMBNAILS = {"200": ["basic"], "400": ["medium", "pro", "admin"]}
 
 
 def test_setup():
     TV = TIER_VARIABLES
     for tier in USER_NAMES:
-        Tier(name=tier, has_url=TV.get(tier)[
-             0], can_fetch_url=TV.get(tier)[1]).save()
+        Tier(name=tier, has_url=TV.get(tier)[0], can_fetch_url=TV.get(tier)[1]).save()
     for name in USER_NAMES:
-        User(username=name, password=name,
-             tier=Tier.objects.get(name=name)).save()
+        User(username=name, password=name, tier=Tier.objects.get(name=name)).save()
     for thumbnail in THUMBNAILS:
         tn = Thumbnail(name=thumbnail, size=int(thumbnail))
         tn.save()
@@ -43,7 +33,6 @@ def test_setup():
 
 
 class ImageTests(APITestCase):
-
     def test_image_get(self):
         test_setup()
         user = User(username="tom", password="tom")
